@@ -1,7 +1,5 @@
 c**********************************************************************
-c   Computational Physics
-c   Personal Project
-c   Edison Lozano 180811
+c   Stellar plotting
 c   FFT frac=28.0
 c**********************************************************************
 
@@ -534,14 +532,6 @@ c----------------Noise-----------------------------------
       end
 
 c**********************************************************************
-c Input data:
-c   nobs  = number of data in arrays x,y
-c   x,y   = arrays containing pixel position and data value.
-c   frac  = size of window for FFT in terms of FFT size.
-c Output:
-c   sigma = rms between smoothed and original data.
-c   yfr    = smoothed fit
-c**********************************************************************
       subroutine smfft(x,y,yfr,nobs,frac,sigma)
 c**********************************************************************
       parameter(ix_dim=65536,iy_dim=65536)
@@ -653,17 +643,11 @@ c     write(6,*)'After adding avg, yfr(1600-ntaper) =',yfr(1600-ntaper)
 c     print *,' sigma = +/- ',sigma
       return
       end
-C SUBROUTINE FOR FAST FOURIER TRANSFORM FROM
-C KANASEWICH'S BOOK (PG. 59)
+
 C THE FOLLOWING SIGN CONVENTION FOR THE FFT IS USED:
 C               N-1
 C   F(K) = (1/N)SUM [f(T) exp(-2*PI*K*T/N)]
 C               T=0
-C NOTE THAT TRANSFORM VALUES FR(N),FI(N) MUST BE DIVIDED BY N ON OUTPUT.
-C TO GENERATE THE FOURIER COEFFCIENTS OF THE INPUT DATA,
-C ADD TRANSFORM VALUES FOR K AND -K TOGETHER (NOT NEEDED
-C FOR K=0 OR N/2).  NOTE THAT ALL FUNCTIONS ARE ASSUMED TO
-C BEGIN AT T=0 (NEED TO APPLY PHASE FACTOR OTHERWISE).
 C
       SUBROUTINE FASTF(FR,FI,N)
 c      IMPLICIT REAL*8 (A-H,O-Z)
